@@ -1,93 +1,45 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Cartao virtual privado de Imperfect Constellations com video original e legendas em ingles e portugues.">
-  <title>Imperfect Constellations - Israel & Layza</title>
-  <!-- MP4 original publicado como arquivo separado sem transcodificar. SHA-256: A7B726FA66F2F56F4AE53360E82878FE9C9F865E4B921AB7F3C40B2255F4B8D8. Tamanho original: 10942728 bytes. -->
+  <meta name="description" content="Imperfect Constellations: musica e letra em ingles e portugues.">
+  <title>Imperfect Constellations - Musica e Letra</title>
   <style>
     :root {
       color-scheme: dark;
-      --ink: #f8f1df;
-      --muted: #cfc3aa;
-      --night: #07111f;
-      --night-2: #111c2e;
-      --paper: #efe2c4;
+      --bg: #07111f;
+      --panel: #0d1829;
+      --panel-2: #111f33;
+      --ink: #fff6e4;
+      --muted: #cbbfaa;
       --gold: #d9ad5f;
-      --rose: #b76b78;
-      --line: rgba(239, 226, 196, .24);
-      --shadow: 0 24px 60px rgba(0, 0, 0, .42);
+      --line: rgba(255, 246, 228, .16);
+      --active: rgba(217, 173, 95, .16);
     }
 
     * { box-sizing: border-box; }
 
-    html,
-    body {
+    html, body {
       margin: 0;
       min-height: 100%;
-      background: var(--night);
+      background:
+        radial-gradient(circle at 18% 12%, rgba(217, 173, 95, .12), transparent 26%),
+        linear-gradient(180deg, #050b13, var(--bg) 58%, #111824);
       color: var(--ink);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
-    body {
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background:
-        linear-gradient(135deg, rgba(239, 226, 196, .05), transparent 36%),
-        linear-gradient(180deg, var(--night), #142037 54%, #2d2630);
-      z-index: -2;
-    }
-
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image:
-        linear-gradient(rgba(255, 255, 255, .045) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, .035) 1px, transparent 1px);
-      background-size: 42px 42px;
-      opacity: .35;
-      z-index: -1;
-    }
-
     main {
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 20px;
+      width: min(100%, 980px);
+      margin: 0 auto;
+      padding: clamp(18px, 4vw, 42px) 14px 42px;
     }
 
-    .experience {
-      width: 100%;
-      max-width: min(980px, calc(100vw - 40px));
-      min-width: 0;
+    header {
       display: grid;
-      gap: 14px;
-    }
-
-    .topline {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 0 2px;
-      min-width: 0;
-    }
-
-    .identity {
-      display: grid;
-      gap: 3px;
-      min-width: 0;
+      gap: 8px;
+      margin-bottom: 18px;
     }
 
     .kicker {
@@ -100,289 +52,150 @@
 
     h1 {
       margin: 0;
-      color: var(--paper);
+      color: var(--ink);
       font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-      font-size: clamp(28px, 5vw, 54px);
-      font-weight: 720;
-      line-height: 1.03;
+      font-size: clamp(36px, 8vw, 76px);
+      line-height: .98;
       letter-spacing: 0;
       overflow-wrap: anywhere;
     }
 
-    .dedication {
+    .sub {
       margin: 0;
+      max-width: 660px;
       color: var(--muted);
-      font-size: clamp(13px, 2vw, 15px);
-      line-height: 1.4;
-      text-align: right;
+      line-height: 1.55;
+      font-size: 15px;
     }
 
-    .stage {
-      position: relative;
-      overflow: hidden;
-      width: 100%;
-      min-width: 0;
+    .player {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: grid;
+      gap: 12px;
+      margin: 18px 0;
+      padding: 14px;
       border: 1px solid var(--line);
       border-radius: 8px;
-      background: #050b13;
-      box-shadow: var(--shadow);
+      background: rgba(8, 15, 26, .94);
+      box-shadow: 0 18px 48px rgba(0,0,0,.32);
+      backdrop-filter: blur(12px);
     }
 
-    .video-frame {
-      position: relative;
+    audio {
       width: 100%;
-      min-width: 0;
-      min-height: 0;
-      aspect-ratio: 1 / 1;
-      overflow: hidden;
-      background: #050b13;
+      accent-color: var(--gold);
     }
 
-    video {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      background: #050b13;
-    }
-
-    .caption-box {
-      position: absolute;
-      left: clamp(10px, 3vw, 28px);
-      right: clamp(10px, 3vw, 28px);
-      bottom: clamp(14px, 3.4vw, 32px);
+    .now {
       display: grid;
-      gap: 5px;
-      padding: clamp(10px, 2.2vw, 18px) clamp(12px, 2.6vw, 22px);
-      border: 1px solid rgba(239, 226, 196, .28);
+      gap: 4px;
+      padding: 12px 14px;
+      border: 1px solid rgba(217, 173, 95, .24);
       border-radius: 8px;
-      background: rgba(5, 9, 16, .72);
-      box-shadow: 0 16px 36px rgba(0, 0, 0, .32);
-      backdrop-filter: blur(10px);
-      transition: opacity .2s ease, transform .2s ease;
+      background: rgba(217, 173, 95, .08);
     }
 
-    .caption-box.empty {
-      opacity: 0;
-      transform: translateY(8px);
-    }
-
-    .caption-en,
-    .caption-pt {
+    .now-en, .now-pt {
       margin: 0;
-      text-align: center;
       white-space: pre-line;
       overflow-wrap: anywhere;
       text-wrap: balance;
-      text-shadow: 0 2px 9px rgba(0, 0, 0, .72);
     }
 
-    .caption-en {
+    .now-en {
       color: #fff8e8;
       font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-      font-size: clamp(18px, 3.1vw, 34px);
+      font-size: clamp(19px, 3.8vw, 31px);
       font-weight: 720;
       line-height: 1.12;
     }
 
-    .caption-pt {
+    .now-pt {
       color: #f0cf91;
-      font-size: clamp(13px, 2vw, 20px);
-      font-weight: 640;
-      line-height: 1.25;
+      font-size: clamp(13px, 2.5vw, 18px);
+      font-weight: 650;
+      line-height: 1.32;
     }
 
-    .controls {
+    .lyrics {
       display: grid;
-      grid-template-columns: auto auto auto auto minmax(0, 1fr);
-      align-items: center;
       gap: 10px;
-      width: 100%;
-      min-width: 0;
-      padding: 12px;
-      border-top: 1px solid var(--line);
-      background: rgba(4, 8, 14, .78);
     }
 
-    .icon-btn {
-      width: 44px;
-      height: 44px;
-      display: inline-grid;
-      place-items: center;
-      border: 1px solid rgba(239, 226, 196, .28);
-      border-radius: 999px;
-      background: rgba(239, 226, 196, .08);
-      color: var(--paper);
-      cursor: pointer;
-      font-family: "Segoe UI Symbol", "Segoe UI", system-ui, sans-serif;
-      font-size: 18px;
-      font-weight: 700;
-      line-height: 1;
-      transition: transform .16s ease, background .16s ease, border-color .16s ease;
+    .lyric-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 12px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .035);
+      transition: background .18s ease, border-color .18s ease, transform .18s ease;
+      scroll-margin-top: 190px;
     }
 
-    .icon-btn:hover,
-    .icon-btn:focus-visible {
-      border-color: rgba(217, 173, 95, .72);
-      background: rgba(217, 173, 95, .18);
-      outline: none;
+    .lyric-row.active {
+      border-color: rgba(217, 173, 95, .58);
+      background: var(--active);
       transform: translateY(-1px);
     }
 
-    .seek-wrap {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      width: 100%;
-      min-width: 0;
+    .line-en, .line-pt {
+      margin: 0;
+      white-space: pre-line;
+      overflow-wrap: anywhere;
+      line-height: 1.48;
     }
 
-    .seek {
-      width: 100%;
-      min-width: 0;
-      accent-color: var(--gold);
+    .line-en {
+      color: #fff3d7;
+      font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+      font-size: 18px;
+      font-weight: 650;
     }
 
-    .time {
-      min-width: 92px;
-      color: var(--muted);
-      font-variant-numeric: tabular-nums;
-      font-size: 13px;
-      text-align: right;
-    }
-
-    .stage:fullscreen {
-      width: 100vw;
-      height: 100vh;
-      display: grid;
-      grid-template-rows: minmax(0, 1fr) auto;
-      border: 0;
-      border-radius: 0;
-      background: #050b13;
-    }
-
-    .stage:fullscreen .video-frame {
-      height: 100%;
-      aspect-ratio: auto;
-    }
-
-    .stage:fullscreen video {
-      object-fit: contain;
+    .line-pt {
+      color: #d8cbb5;
+      font-size: 15px;
     }
 
     @media (max-width: 720px) {
-      main {
-        align-items: start;
-        padding: 12px;
+      main { padding-top: 16px; }
+
+      .player {
+        position: static;
       }
 
-      .topline {
-        align-items: start;
-        display: grid;
+      .lyric-row {
+        grid-template-columns: 1fr;
         gap: 8px;
-      }
-
-      .dedication {
-        text-align: left;
-      }
-
-      .controls {
-        grid-template-columns: repeat(4, 44px);
-        justify-content: space-between;
-      }
-
-      #playBtn {
-        grid-column: 1;
-        grid-row: 1;
-      }
-
-      #restartBtn {
-        grid-column: 2;
-        grid-row: 1;
-      }
-
-      #muteBtn {
-        grid-column: 3;
-        grid-row: 1;
-      }
-
-      #fullscreenBtn {
-        grid-column: 4;
-        grid-row: 1;
-      }
-
-      .seek-wrap {
-        grid-column: 1 / -1;
-        grid-row: 2;
-      }
-
-      .time {
-        min-width: auto;
-      }
-    }
-
-    @media (max-width: 520px) {
-      .experience {
-        max-width: min(360px, calc(100vw - 24px));
-        justify-self: start;
-      }
-    }
-
-    @media (max-width: 420px) {
-      .caption-box {
-        left: 8px;
-        right: 8px;
-        bottom: 10px;
-      }
-
-      .caption-en {
-        font-size: clamp(15px, 5.2vw, 22px);
-      }
-
-      .caption-pt {
-        font-size: clamp(11px, 3.8vw, 15px);
       }
     }
   </style>
 </head>
 <body>
   <main>
-    <section class="experience" aria-label="Cartao virtual Imperfect Constellations">
-      <header class="topline">
-        <div class="identity">
-          <div class="kicker">Israel & Layza</div>
-          <h1>Imperfect Constellations</h1>
-        </div>
-        <p class="dedication">A song for the love that found its way back.</p>
-      </header>
+    <header>
+      <div class="kicker">Israel & Layza</div>
+      <h1>Imperfect Constellations</h1>
+      <p class="sub">Apenas a musica e a letra, em ingles e portugues.</p>
+    </header>
 
-      <section class="stage" id="stage" aria-label="Video com legendas em ingles e portugues">
-        <div class="video-frame">
-          <video id="songVideo" preload="metadata" playsinline poster="poster.jpg">
-            <source src="Imperfect_Constellations.mp4" type="video/mp4">
-          </video>
-          <div class="caption-box" id="captionBox" aria-live="polite">
-            <p class="caption-en" id="captionEn">Imperfect Constellations</p>
-            <p class="caption-pt" id="captionPt">Constela&ccedil;&otilde;es imperfeitas</p>
-          </div>
-        </div>
-
-        <nav class="controls" aria-label="Controles do cartao">
-          <button class="icon-btn" id="playBtn" type="button" title="Reproduzir ou pausar" aria-label="Reproduzir ou pausar"><span id="playIcon" aria-hidden="true">&#9654;</span></button>
-          <button class="icon-btn" id="restartBtn" type="button" title="Reiniciar" aria-label="Reiniciar">&#8634;</button>
-          <button class="icon-btn" id="muteBtn" type="button" title="Ativar ou silenciar audio" aria-label="Ativar ou silenciar audio"><span id="muteIcon" aria-hidden="true">&#9835;</span></button>
-          <button class="icon-btn" id="fullscreenBtn" type="button" title="Tela cheia" aria-label="Tela cheia">&#9974;</button>
-          <div class="seek-wrap">
-            <input class="seek" id="seek" type="range" min="0" max="180.43" value="0" step="0.01" aria-label="Progresso da musica">
-            <span class="time" id="time">0:00 / 3:00</span>
-          </div>
-        </nav>
-      </section>
+    <section class="player" aria-label="Tocador da musica">
+      <audio id="song" controls preload="metadata" src="Imperfect_Constellations.mp3"></audio>
+      <div class="now" aria-live="polite">
+        <p class="now-en" id="nowEn">Imperfect Constellations</p>
+        <p class="now-pt" id="nowPt">Constela&ccedil;&otilde;es imperfeitas</p>
+      </div>
     </section>
+
+    <section class="lyrics" id="lyrics" aria-label="Letra em ingles e portugues"></section>
   </main>
 
   <script>
-    const captionCues = [
+    const cues = [
     {
         "start": 0.0,
         "end": 5.0,
@@ -570,108 +383,65 @@
         "pt": "Constela\u00e7\u00f5es imperfeitas"
     }
 ];
+    const audio = document.getElementById('song');
+    const lyrics = document.getElementById('lyrics');
+    const nowEn = document.getElementById('nowEn');
+    const nowPt = document.getElementById('nowPt');
+    let activeIndex = -1;
 
-    const video = document.getElementById('songVideo');
-    const stage = document.getElementById('stage');
-    const playBtn = document.getElementById('playBtn');
-    const playIcon = document.getElementById('playIcon');
-    const restartBtn = document.getElementById('restartBtn');
-    const muteBtn = document.getElementById('muteBtn');
-    const muteIcon = document.getElementById('muteIcon');
-    const fullscreenBtn = document.getElementById('fullscreenBtn');
-    const seek = document.getElementById('seek');
-    const time = document.getElementById('time');
-    const captionBox = document.getElementById('captionBox');
-    const captionEn = document.getElementById('captionEn');
-    const captionPt = document.getElementById('captionPt');
+    function buildLyrics() {
+      const fragment = document.createDocumentFragment();
+      cues.forEach((cue, index) => {
+        const row = document.createElement('article');
+        row.className = 'lyric-row';
+        row.dataset.index = String(index);
 
-    function formatTime(value) {
-      if (!Number.isFinite(value)) return '0:00';
-      const minutes = Math.floor(value / 60);
-      const seconds = Math.floor(value % 60).toString().padStart(2, '0');
-      return `${minutes}:${seconds}`;
+        const en = document.createElement('p');
+        en.className = 'line-en';
+        en.textContent = cue.en;
+
+        const pt = document.createElement('p');
+        pt.className = 'line-pt';
+        pt.textContent = cue.pt;
+
+        row.append(en, pt);
+        fragment.append(row);
+      });
+      lyrics.append(fragment);
     }
 
-    function activeCue(currentTime) {
-      return captionCues.find((cueItem) => currentTime >= cueItem.start && currentTime < cueItem.end) || null;
+    function findActiveIndex(time) {
+      return cues.findIndex((cue) => time >= cue.start && time < cue.end);
     }
 
-    function renderCaption() {
-      const cueItem = activeCue(video.currentTime);
-      captionBox.classList.toggle('empty', !cueItem);
-      captionEn.textContent = cueItem ? cueItem.en : '';
-      captionPt.textContent = cueItem ? cueItem.pt : '';
-    }
+    function renderCurrent(scrollIntoView = false) {
+      const index = findActiveIndex(audio.currentTime);
+      if (index === activeIndex) return;
 
-    function renderState() {
-      const duration = Number.isFinite(video.duration) ? video.duration : 180.43;
-      seek.max = duration.toFixed(2);
-      if (!seek.matches(':active')) {
-        seek.value = Math.min(video.currentTime, duration).toFixed(2);
+      if (activeIndex >= 0) {
+        const oldRow = lyrics.querySelector(`[data-index="${activeIndex}"]`);
+        oldRow?.classList.remove('active');
       }
-      time.textContent = `${formatTime(video.currentTime)} / ${formatTime(duration)}`;
-      playIcon.innerHTML = video.paused ? '&#9654;' : '&#10074;&#10074;';
-      muteIcon.innerHTML = video.muted ? '&#9834;' : '&#9835;';
-      renderCaption();
-    }
 
-    async function togglePlay() {
-      if (video.paused) {
-        try {
-          await video.play();
-        } catch (error) {
-          playIcon.innerHTML = '&#9654;';
+      activeIndex = index;
+      const cue = cues[index] || cues[0];
+      nowEn.textContent = cue.en;
+      nowPt.textContent = cue.pt;
+
+      if (index >= 0) {
+        const row = lyrics.querySelector(`[data-index="${index}"]`);
+        row?.classList.add('active');
+        if (scrollIntoView && row) {
+          row.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
-      } else {
-        video.pause();
-      }
-      renderState();
-    }
-
-    function restart() {
-      video.currentTime = 0;
-      renderState();
-      video.play().catch(() => renderState());
-    }
-
-    function toggleMute() {
-      video.muted = !video.muted;
-      renderState();
-    }
-
-    async function toggleFullscreen() {
-      if (document.fullscreenElement) {
-        await document.exitFullscreen();
-        return;
-      }
-      if (stage.requestFullscreen) {
-        await stage.requestFullscreen();
-        return;
-      }
-      if (video.webkitEnterFullscreen) {
-        video.webkitEnterFullscreen();
       }
     }
 
-    playBtn.addEventListener('click', togglePlay);
-    restartBtn.addEventListener('click', restart);
-    muteBtn.addEventListener('click', toggleMute);
-    fullscreenBtn.addEventListener('click', () => toggleFullscreen().catch(() => {}));
-
-    seek.addEventListener('input', () => {
-      video.currentTime = Number(seek.value);
-      renderState();
-    });
-
-    video.addEventListener('loadedmetadata', renderState);
-    video.addEventListener('timeupdate', renderState);
-    video.addEventListener('play', renderState);
-    video.addEventListener('pause', renderState);
-    video.addEventListener('ended', renderState);
-    document.addEventListener('fullscreenchange', renderState);
-
-    renderState();
+    buildLyrics();
+    renderCurrent(false);
+    audio.addEventListener('timeupdate', () => renderCurrent(!audio.paused));
+    audio.addEventListener('seeked', () => renderCurrent(true));
+    audio.addEventListener('play', () => renderCurrent(true));
   </script>
 </body>
 </html>
-
